@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         靜宜大學課程清單選課人數顯示
 // @namespace    https://www.moontai0724.tw
-// @version      1.1
+// @version      1.1.1
 // @description  於靜宜大學課程清單網頁顯示目前選課人數與人數上限
 // @author       moontai0724
 // @match        https://alcat.pu.edu.tw/2011courseAbstract/main.php*
@@ -62,7 +62,9 @@
   }
 
   async function fetchQuota(classNumber) {
-    const data = new URLSearchParams({ selectno: classNumber });
+    const data = new URLSearchParams({
+      selectno: classNumber.toString().padStart(4, "0"),
+    });
     const response = await fetch(
       "https://alcat.pu.edu.tw/choice/q_person.html",
       {
